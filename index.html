@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>BRAVIO Boxing Club — Esculpe teu caminho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;800;900&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Morgen Bravio';
+    src: url('assets/fonts/Morgen-Bravio.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  .brand-mark {
+    font-family: 'Morgen Bravio', 'Work Sans', sans-serif !important;
+    font-weight: normal !important;
+    letter-spacing: 0.04em !important;
+    text-transform: none !important;
+  }
+  :root {
+    --bg: oklch(0.07 0.005 285);
+    --bg-2: oklch(0.11 0.005 285);
+    --bg-3: oklch(0.15 0.005 285);
+    --fg: oklch(0.985 0 0);
+    --fg-dim: oklch(0.72 0 0);
+    --fg-mute: oklch(0.48 0 0);
+    --border: oklch(0.22 0.005 285);
+    --primary: oklch(0.62 0.24 16);
+    --primary-deep: oklch(0.45 0.22 16);
+    --bone: oklch(0.93 0.015 80);
+    --radius: 18px;
+  }
+  :root.light {
+    --bg: oklch(0.985 0.005 80);
+    --bg-2: oklch(0.96 0.005 80);
+    --bg-3: oklch(0.92 0.008 80);
+    --fg: oklch(0.12 0.005 285);
+    --fg-dim: oklch(0.35 0.005 285);
+    --fg-mute: oklch(0.55 0 0);
+    --border: oklch(0.85 0.005 80);
+    --bone: oklch(0.18 0.008 80);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  ::selection { background: var(--primary); color: #fff; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-weight: 400; }
+  .serif { font-family: 'Instrument Serif', serif; font-weight: 400; font-style: italic; }
+  .display { font-family: 'Work Sans', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; color: var(--fg-dim); }
+  .container { max-width: 1480px; margin: 0 auto; padding: 0 48px; }
+  @media (max-width: 1200px) { #navbar .nav-links { display:none !important; } }
+  @media (max-width: 768px) { .container { padding: 0 24px; } }
+
+  /* Hide while loading */
+  .reveal-char, .reveal-word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+  .reveal-inner {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .revealed .reveal-inner { transform: translateY(0); }
+
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.19,1,0.22,1), transform 0.9s cubic-bezier(0.19,1,0.22,1); }
+  .fade-up.in { opacity: 1; transform: none; }
+
+  /* Noise */
+  .noise::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.35'/></svg>");
+    opacity: 0.28;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  /* Interactive cursor spotlight */
+  .spotlight::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), oklch(0.62 0.24 16 / 0.15), transparent 60%);
+    pointer-events: none;
+    transition: background 0.1s linear;
+  }
+
+  /* Primary pill */
+  .pill {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--fg); color: var(--bg);
+    padding: 8px 8px 8px 22px; border-radius: 999px;
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em;
+    text-decoration: none; transition: background 0.3s;
+  }
+  .pill:hover { background: var(--bone); }
+  .pill .ico {
+    width: 34px; height: 34px; border-radius: 999px; background: var(--primary);
+    display: grid; place-items: center; color: #fff;
+    transition: transform 0.4s;
+  }
+  .pill:hover .ico { transform: rotate(45deg); }
+
+  .pill-ghost {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: color-mix(in oklab, var(--bone) 8%, transparent);
+    color: var(--fg);
+    border: 1px solid color-mix(in oklab, var(--fg) 25%, transparent);
+    padding: 11px 20px; border-radius: 10px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: border-color 0.3s, background 0.3s, color 0.3s;
+    position: relative;
+  }
+  .pill-ghost::before {
+    content: "";
+    width: 6px; height: 6px; border-radius: 999px;
+    background: var(--primary);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .pill-ghost:hover {
+    border-color: color-mix(in oklab, var(--fg) 45%, transparent);
+    background: color-mix(in oklab, var(--bone) 14%, transparent);
+  }
+  .pill-ghost:hover::before {
+    transform: scale(1.3);
+    box-shadow: 0 0 12px oklch(0.62 0.24 16 / 0.9);
+  }
+
+  svg.ico-svg { width: 18px; height: 18px; stroke-width: 1.6; stroke: currentColor; fill: none; }
+
+  /* section frame */
+  section { position: relative; }
+  .sec-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--border); padding-bottom: 18px; margin-bottom: 48px;
+  }
+
+  .light .dark-only { display: none; }
+  :root:not(.light) .light-only { display: none; }
+</style>
+</head>
+<body>
+
+<!-- Tweaks panel -->
+<div id="tweaks" style="display:none; position:fixed; bottom:20px; right:20px; z-index:200; background:var(--bg-2); border:1px solid var(--border); border-radius:14px; padding:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--fg); box-shadow:0 20px 60px rgba(0,0,0,0.4); width:240px;">
+  <div style="font-weight:600; text-transform:uppercase; letter-spacing:0.14em; margin-bottom:12px; color:var(--fg-dim);">Tweaks</div>
+  <label style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+    <span>Theme</span>
+    <select id="tk-theme" style="background:var(--bg-3); color:var(--fg); border:1px solid var(--border); border-radius:8px; padding:6px 8px; font:inherit;">
+      <option value="dark">Dark</option>
+      <option value="light">Light</option>
+    </select>
+  </label>
+</div>
+
+<!-- Container -->
+<div id="app"></div>
+
+<script>
+(() => {
+  // ========= THEME =========
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "theme": "dark"
+  }/*EDITMODE-END*/;
+  function applyTheme(t) {
+    document.documentElement.classList.toggle('light', t === 'light');
+    const sel = document.getElementById('tk-theme');
+    if (sel) sel.value = t;
+  }
+  applyTheme(TWEAK_DEFAULTS.theme);
+
+  // ========= EDIT MODE WIRING =========
+  window.addEventListener('message', (e) => {
+    const d = e.data || {};
+    if (d.type === '__activate_edit_mode') document.getElementById('tweaks').style.display = 'block';
+    if (d.type === '__deactivate_edit_mode') document.getElementById('tweaks').style.display = 'none';
+  });
+  setTimeout(() => {
+    window.parent.postMessage({type:'__edit_mode_available'}, '*');
+  }, 50);
+  document.getElementById('tk-theme').addEventListener('change', (e) => {
+    const v = e.target.value;
+    applyTheme(v);
+    window.parent.postMessage({type:'__edit_mode_set_keys', edits:{theme:v}}, '*');
+  });
+})();
+</script>
+
+<script type="module" src="./scripts/app.js?v=22"></script>
+</body>
+</html>
