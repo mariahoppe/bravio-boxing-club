@@ -5,7 +5,7 @@ const faqs = [
   { q:'Preciso de equipamento para a primeira aula?', a:'Não. Emprestamos luvas e bandagens para tua aula experimental. Se continuar, orientamos a compra de luvas próprias e bandagem individual por questões de higiene.' },
   { q:'Tem turma só para mulheres?', a:'Sim — o Círculo Feminino. Turma conduzida por treinadora certificada, ambiente acolhedor, com nível do iniciante ao competitivo. Segundas e quartas.' },
   { q:'Como funciona a mensalidade?', a:'Mensalidade única com acesso livre a todas as turmas do teu nível. Sem fidelidade. Primeiro mês com 50% de desconto para quem vem pela aula experimental.' },
-  { q:'Onde fica o clube?', a:'Rua Nereu Ramos, 1234 — bairro Centro, Chapecó/SC. Estacionamento próprio, vestiários completos e entrada independente para a turma infantil.' },
+  { q:'Onde fica o clube?', a:'Rua Borges de Medeiros, 1664E — bairro Passo dos Fortes, Chapecó/SC. Estacionamento próprio, vestiários completos e entrada independente para a turma infantil.' },
   { q:'Vocês formam atletas para competição?', a:'Sim. O Clube Competitivo é seletivo e forma atletas amadores federados. Convocatória anual em fevereiro — avaliação técnica e de condicionamento obrigatória.' },
 ];
 
@@ -21,13 +21,29 @@ export function FAQ() {
     <div style="display:grid; grid-template-columns: 1fr 2fr; gap:80px;">
       <div>
         <h2 class="display" data-reveal style="font-size:clamp(40px, 4.8vw, 72px); line-height:0.95; color:var(--fg); margin-bottom:40px;">
-          PERGUNTAS <span style="color:var(--primary);">FRANCAS</span>.
+          PERGUNTAS FRANCAS.
         </h2>
         <p class="fade-up" style="font-size:16px; line-height:1.6; color:var(--fg-dim); font-weight:300; margin-bottom:40px;">
           Respostas diretas para dúvidas comuns. Não achou o que procurava? Fala direto com a gente — WhatsApp disponível no rodapé.
         </p>
 
-        <a href="#contato" class="pill"><span>Falar Com o Clube</span><span class="ico">${icons.arrowRight}</span></a>
+        <a href="#contato" style="
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+          background:transparent;
+          color:var(--primary);
+          text-decoration:none;
+          font-family:'Work Sans',sans-serif;
+          font-size:13px;
+          font-weight:600;
+          letter-spacing:0.08em;
+          text-transform:uppercase;
+          padding:13px 22px;
+          border:1.5px solid var(--primary);
+          border-radius:10px;
+          transition:background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+        " onmouseover="this.style.background='var(--primary)'; this.style.color='#fff'; this.style.transform='translateY(-1px)'" onmouseout="this.style.background='transparent'; this.style.color='var(--primary)'; this.style.transform='translateY(0)'">Falar Com o Clube</a>
       </div>
 
       <div>
