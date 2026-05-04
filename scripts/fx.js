@@ -3,19 +3,38 @@
 // Split text into per-word reveal wrappers then observe
 export function initTextReveal() {
   document.querySelectorAll('[data-reveal]').forEach(el => {
-    const text = el.textContent.trim();
-    const words = text.split(' ');
-    el.textContent = '';
-    words.forEach((w, i) => {
-      const wrap = document.createElement('span');
-      wrap.className = 'reveal-word';
-      const inner = document.createElement('span');
-      inner.className = 'reveal-inner';
-      inner.style.transitionDelay = (i * 50) + 'ms';
-      inner.textContent = w + '\u00A0';
-      wrap.appendChild(inner);
-      el.appendChild(wrap);
-    });
+    // Walk child nodes and wrap each WORD in reveal spans, preserving any inline element styling
+    // (e.g. <span style="color:var(--primary)">CAMINHO</span> stays red).
+    let wordIndex = 0;
+    function processNode(node, parent) {
+      if (node.nodeType === 3) {
+        // text node — split into words
+        const words = node.nodeValue.split(/(\s+)/);
+        words.forEach(piece => {
+          if (piece.trim() === '') {
+            // whitespace — keep as-is
+            parent.appendChild(document.createTextNode(piece));
+          } else {
+            const wrap = document.createElement('span');
+            wrap.className = 'reveal-word';
+            const inner = document.createElement('span');
+            inner.className = 'reveal-inner';
+            inner.style.transitionDelay = (wordIndex++ * 50) + 'ms';
+            inner.textContent = piece;
+            wrap.appendChild(inner);
+            parent.appendChild(wrap);
+          }
+        });
+      } else if (node.nodeType === 1) {
+        // element — clone the wrapper (without children), recurse into it
+        const clone = node.cloneNode(false);
+        node.childNodes.forEach(c => processNode(c, clone));
+        parent.appendChild(clone);
+      }
+    }
+    const original = Array.from(el.childNodes);
+    el.innerHTML = '';
+    original.forEach(n => processNode(n, el));
   });
 
   const io = new IntersectionObserver((entries) => {

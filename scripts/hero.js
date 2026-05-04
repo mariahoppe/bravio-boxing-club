@@ -19,19 +19,13 @@ export function Hero() {
             <span style="width:6px; height:6px; border-radius:999px; background:var(--primary);"></span>
             Clube de Boxe · Chapecó / SC
           </div>
-          <h1 class="display" data-reveal style="font-size:clamp(60px, 9vw, 148px); line-height:0.88; color:#fff; font-weight:900;">ESCULPE TEU CAMINHO.</h1>
+          <h1 class="display" data-reveal style="font-size:clamp(60px, 9vw, 148px); line-height:0.88; color:#fff; font-weight:900;">ESCULPE TEU <span style="color:var(--primary);">CAMINHO</span>.</h1>
         </div>
 
         <div style="display:flex; flex-direction:column; align-items:flex-end; gap:36px;">
           <p class="fade-up" style="font-size:19px; line-height:1.5; max-width:460px; text-align:right; color:rgba(255,255,255,0.82); font-weight:300;">
             O boxe não é sobre bater. É sobre atravessar. <span class="serif" style="color:var(--primary);">Força, coragem e persistência</span> — forjadas, golpe a golpe, em cada round.
           </p>
-          <div class="fade-up" style="transition-delay:0.2s;">
-            <a href="#agenda" class="pill">
-              <span>Começar Minha Jornada</span>
-              <span class="ico">${icons.arrowRight}</span>
-            </a>
-          </div>
         </div>
       </div>
 

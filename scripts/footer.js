@@ -8,7 +8,7 @@ export function Footer() {
     <!-- Giant wordmark -->
     <div style="margin-bottom:80px;">
       <h2 class="brand-mark" data-reveal style="font-size:clamp(80px, 16vw, 260px); line-height:0.85; color:var(--fg);">
-        BRAV<span style="color:var(--primary);">IO</span>
+        BRAVIO
       </h2>
     </div>
 
@@ -25,24 +25,28 @@ export function Footer() {
         <div class="mono" style="font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--fg-mute); margin-bottom:20px;">Horário</div>
         <div style="font-size:14px; line-height:1.9; color:var(--fg-dim);">
           Seg a Sex<br>06h — 22h<br>
-          <span style="color:var(--fg-mute);">Sábado · 08h — 12h</span>
+          <span style="color:var(--fg-mute);">Sábado · 09h — 14h</span>
         </div>
       </div>
 
       <div>
         <div class="mono" style="font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--fg-mute); margin-bottom:20px;">Endereço</div>
         <div style="font-size:14px; line-height:1.9; color:var(--fg-dim);">
-          R. Nereu Ramos, 1234<br>Centro · Chapecó / SC<br>
-          <span style="color:var(--fg-mute);">89801-520</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Rua+Borges+de+Medeiros+1664E+Passo+dos+Fortes+Chapeco+SC+89805-570" target="_blank" rel="noopener" style="color:var(--fg-dim); text-decoration:none; border-bottom:1px solid transparent; transition:color 0.25s, border-color 0.25s;" onmouseover="this.style.color='var(--fg)'; this.style.borderBottomColor='var(--primary)'" onmouseout="this.style.color='var(--fg-dim)'; this.style.borderBottomColor='transparent'">
+            Rua Borges de Medeiros, 1664E<br>Passo dos Fortes · Chapecó / SC<br>
+            <span style="color:var(--fg-mute);">89805-570</span>
+          </a>
+          <div class="mono" style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--primary); margin-top:8px;">↗ Abrir no Google Maps</div>
         </div>
       </div>
 
       <div>
         <div class="mono" style="font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--fg-mute); margin-bottom:20px;">Contato</div>
         <div style="font-size:14px; line-height:1.9; color:var(--fg-dim);">
-          (49) 9 9999-9999<br>contato@bravio.club<br>
+          <a href="https://wa.me/5549991952862" target="_blank" rel="noopener" style="color:var(--fg-dim); text-decoration:none;" onmouseover="this.style.color='var(--fg)'" onmouseout="this.style.color='var(--fg-dim)'">(49) 99195-2862</a><br>contato@bravio.club<br>
           <div style="display:flex; gap:8px; margin-top:14px;">
-            ${['IG','WP','YT'].map(s => `<a href="#" class="mono" style="width:36px; height:36px; border:1px solid var(--border); border-radius:10px; display:grid; place-items:center; font-size:10px; color:var(--fg-dim); text-decoration:none; letter-spacing:0.1em; transition:all 0.3s;" onmouseover="this.style.background='var(--primary)'; this.style.color='#fff'; this.style.borderColor='var(--primary)'" onmouseout="this.style.background='transparent'; this.style.color='var(--fg-dim)'; this.style.borderColor='var(--border)'">${s}</a>`).join('')}
+            <a href="https://www.instagram.com/bravioboxingclub/" target="_blank" rel="noopener" class="mono" style="width:36px; height:36px; border:1px solid var(--border); border-radius:10px; display:grid; place-items:center; font-size:10px; color:var(--fg-dim); text-decoration:none; letter-spacing:0.1em; transition:all 0.3s;" onmouseover="this.style.background='var(--primary)'; this.style.color='#fff'; this.style.borderColor='var(--primary)'" onmouseout="this.style.background='transparent'; this.style.color='var(--fg-dim)'; this.style.borderColor='var(--border)'">IG</a>
+            <a href="https://wa.me/5549991952862" target="_blank" rel="noopener" class="mono" style="width:36px; height:36px; border:1px solid var(--border); border-radius:10px; display:grid; place-items:center; font-size:10px; color:var(--fg-dim); text-decoration:none; letter-spacing:0.1em; transition:all 0.3s;" onmouseover="this.style.background='var(--primary)'; this.style.color='#fff'; this.style.borderColor='var(--primary)'" onmouseout="this.style.background='transparent'; this.style.color='var(--fg-dim)'; this.style.borderColor='var(--border)'">WP</a>
           </div>
         </div>
       </div>

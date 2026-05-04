@@ -9,6 +9,7 @@
 <title>BRAVIO Boxing Club — Esculpe teu caminho</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="assets/fonts/Morgen-Bravio.otf" as="font" type="font/otf" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;800;900&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif&display=swap" rel="stylesheet">
 <style>
   @font-face {
@@ -16,7 +17,7 @@
     src: url('assets/fonts/Morgen-Bravio.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
   }
   .brand-mark {
     font-family: 'Morgen Bravio', 'Work Sans', sans-serif !important;
@@ -32,8 +33,8 @@
     --fg-dim: oklch(0.72 0 0);
     --fg-mute: oklch(0.48 0 0);
     --border: oklch(0.22 0.005 285);
-    --primary: oklch(0.62 0.24 16);
-    --primary-deep: oklch(0.45 0.22 16);
+    --primary: oklch(0.45 0.18 22);
+    --primary-deep: oklch(0.36 0.16 22);
     --bone: oklch(0.93 0.015 80);
     --radius: 18px;
   }
@@ -49,6 +50,11 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
+
+  /* Hold text invisible until brand font is ready, to avoid font-swap flash */
+  html:not(.fonts-ready) body { opacity: 0; }
+  html.fonts-ready body { opacity: 1; transition: opacity 0.25s ease; }
+
   body {
     background: var(--bg);
     color: var(--fg);
@@ -59,9 +65,16 @@
     transition: background 0.4s ease, color 0.4s ease;
   }
   ::selection { background: var(--primary); color: #fff; }
+
+  /* Hide scrollbar (still scrollable) */
+  html { scrollbar-width: none; -ms-overflow-style: none; }
+  html::-webkit-scrollbar { width: 0; height: 0; display: none; }
+  body::-webkit-scrollbar { width: 0; height: 0; display: none; }
   .mono { font-family: 'JetBrains Mono', monospace; font-weight: 400; }
   .serif { font-family: 'Instrument Serif', serif; font-weight: 400; font-style: italic; }
   .display { font-family: 'Work Sans', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; }
+  /* Headline class — big titles only — applied via .display.title or directly */
+  h1.display, h2.display, .value-title { font-family: 'Morgen Bravio', 'Work Sans', sans-serif; font-weight: 400; letter-spacing: 0.04em; }
   .eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; color: var(--fg-dim); }
   .container { max-width: 1480px; margin: 0 auto; padding: 0 48px; }
   @media (max-width: 1200px) { #navbar .nav-links { display:none !important; } }
@@ -159,6 +172,24 @@
   .light .dark-only { display: none; }
   :root:not(.light) .light-only { display: none; }
 </style>
+<script>
+  // Mark fonts as ready when Morgen Bravio is loaded — so text doesn't flash with fallback first.
+  (function () {
+    var html = document.documentElement;
+    function ready() { html.classList.add('fonts-ready'); }
+    if (document.fonts && document.fonts.load) {
+      // Try loading the brand font explicitly. document.fonts.ready waits for ALL fonts;
+      // we just need this one to be ready (others use Google's swap).
+      Promise.race([
+        document.fonts.load('1em "Morgen Bravio"'),
+        new Promise(function (r) { setTimeout(r, 1500); }) // safety timeout
+      ]).then(ready);
+    } else {
+      // Fallback: just show after a short delay
+      setTimeout(ready, 600);
+    }
+  })();
+</script>
 </head>
 <body>
 

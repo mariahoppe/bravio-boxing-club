@@ -30,13 +30,10 @@ export function Philosophy() {
       <span class="mono" style="font-size:11px; color:var(--fg-mute);">[ OS TRÊS VALORES ]</span>
     </div>
 
-    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:80px; align-items:end; margin-bottom:80px;">
-      <h2 class="display" data-reveal style="font-size:clamp(40px, 5.8vw, 88px); line-height:0.95; color:var(--fg); max-width:680px;">
-        TRÊS VALORES. UMA <span style="color:var(--primary);">CONDUTA</span>.
+    <div style="margin-bottom:80px;">
+      <h2 class="display" data-reveal style="font-size:clamp(40px, 5.8vw, 88px); line-height:0.95; color:var(--fg); max-width:1100px;">
+        TRÊS VALORES. UMA CONDUTA.
       </h2>
-      <p class="fade-up" style="font-size:17px; line-height:1.6; color:var(--fg-dim); font-weight:300; max-width:460px;">
-        Nossa metodologia se ancora em três palavras. Elas estruturam cada aula, cada técnica, cada conversa — do primeiro dia de iniciação até o clube competitivo.
-      </p>
     </div>
 
     <!-- Split layout: list on left, sticky image panel on right -->
@@ -51,7 +48,7 @@ export function Philosophy() {
               <div class="mono" style="font-size:11px; letter-spacing:0.2em; color:var(--fg-mute);">${v.n} / 03</div>
             </div>
 
-            <h3 class="display value-title" style="font-size:clamp(56px, 7.5vw, 110px); line-height:0.9; letter-spacing:-0.025em; color:var(--fg); margin:0; position:relative; display:inline-block;">
+            <h3 class="display value-title" style="font-size:clamp(56px, 7.5vw, 110px); line-height:1; letter-spacing:0.04em; color:var(--fg); margin:0; position:relative; display:inline-block;">
               ${v.title}
               <span class="value-underline" style="position:absolute; left:0; right:0; bottom:-6px; height:3px; background:var(--primary); transform-origin:left; transform:scaleX(0); transition:transform 0.5s cubic-bezier(0.65,0,0.35,1);"></span>
             </h3>
@@ -92,24 +89,9 @@ export function Philosophy() {
         </div>
       </div>
     </div>
-
-    <!-- Code of the house quote -->
-    <div class="fade-up" style="margin-top:120px; padding:48px 56px; border:1px solid var(--border); border-radius:var(--radius); background:var(--bg-2); display:flex; justify-content:space-between; align-items:center; gap:40px; flex-wrap:wrap;">
-      <div style="flex:1; min-width:320px;">
-        <p class="serif" style="font-size:30px; line-height:1.2; color:var(--fg); max-width:780px; font-style:italic;">
-          "Quem escolhe o ringue, escolhe olhar pra si mesmo sem desvio. O boxe só expõe o que já estava dentro."
-        </p>
-        <p class="mono" style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--fg-mute); margin-top:20px;">— <span class="brand-mark" style="font-size:15px; letter-spacing:0.04em; text-transform:none; vertical-align:-1px;">Bravio</span> · CÓDIGO DA CASA</p>
-      </div>
-      <a href="#agenda" class="pill">
-        <span>Ver Agenda</span>
-        <span class="ico">${icons.arrowRight}</span>
-      </a>
-    </div>
   </div>
 </section>
 <style>
-  .value-row:hover .value-underline { transform:scaleX(1); }
   .value-row.active .value-underline { transform:scaleX(1); }
   .value-row.active .value-desc-wrap { max-height:400px !important; margin-top:0; }
   .value-row.active .value-title { color:var(--primary); }

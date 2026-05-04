@@ -14,7 +14,21 @@ export function Navbar() {
   </div>
 
   <div style="display:flex; align-items:center; gap:16px;">
-    <a href="#agenda" class="pill-ghost">Agendar Aula</a>
+    <a href="#agenda" class="cta-red" style="
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--primary);
+      color:#fff;
+      text-decoration:none;
+      font-size:11px;
+      font-weight:600;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      padding:10px 16px;
+      border-radius:8px;
+      transition:background 0.25s ease, transform 0.25s ease;
+    " onmouseover="this.style.background='var(--primary-deep)'; this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--primary)'; this.style.transform='translateY(0)'">Faça parte disso!</a>
   </div>
 </nav>
 <style>
